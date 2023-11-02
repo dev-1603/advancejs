@@ -169,3 +169,18 @@ Box.prototype.getValue = function () {
 
 const boxes = [new Box(1), new Box(2), new Box(3)];
 ```
+
+### Class
+
+In javascript Classes are primarily syntactical sugar over prototypal inheritance
+
+in class instead of having a Object Function its declared as class
+
+There are 2 changes mainly
+
+1. The initialization of Object moves into an constructor function.
+2. All the methods on prototype object is rewriten inside the class
+
+The Class keyword simply makes the syntax better
+
+2 used keywords in class are **extends** and **Super**
