@@ -181,6 +181,139 @@ There are 2 changes mainly
 1. The initialization of Object moves into an constructor function.
 2. All the methods on prototype object is rewriten inside the class
 
-The Class keyword simply makes the syntax better
+The Class keyword simply makes the syntax better.
+
+The body of a class is the part that is in curly braces {}. This is where you define class members, such as methods or constructor.
+
+A class element can be characterized by three aspects:
+
+Kind: Getter, setter, method, or field
+Location: Static or instance
+Visibility: Public or private
+
+Together, they add up to 16 possible combinations. To divide the reference more logically and avoid overlapping content, the different elements are introduced in detail in different pages:
+
+**Method definitions**
+Public instance method
+
+**getter**
+Public instance getter
+
+**setter**
+Public instance setter
+
+**Public class fields**
+Public instance field
+
+**static**
+Public static method, getter, setter, and field
+
+**Private class features**
+Everything that's private
 
 2 used keywords in class are **extends** and **Super**
+
+```js
+class Animal {
+	constructor(name) {
+		this.name = name;
+	}
+
+	speak() {
+		console.log(`${this.name} makes a noise.`);
+	}
+}
+
+class Dog extends Animal {
+	constructor(name) {
+		super(name); // call the super class constructor and pass in the name parameter
+	}
+
+	speak() {
+		console.log(`${this.name} barks.`);
+	}
+}
+
+const d = new Dog('Mitzie');
+d.speak(); // Mitzie barks.
+```
+
+### Iterable and Iterators
+
+- Iterable Objects: An iterable object is any JavaScript object that can be iterated over, meaning you can loop through its elements one at a time. Iterable objects include arrays, strings, sets, maps, and custom objects that implement the Iterable protocol.
+
+- The Iterable Protocol: The Iterable protocol is not a formal specification but a de facto concept that iterable objects adhere to. To be iterable, an object should have a method named Symbol.iterator that returns an iterator object. This iterator object should have a **next** method that, when called, returns an object with **value** and **done** properties. The value property represents the current value being iterated, and the done property indicates whether iteration is complete.
+
+1. For ..of loop
+
+```js
+//   for string
+const str = 'Developer';
+
+for (const char of str) {
+	console.log(char);
+}
+
+// for Array
+const arr = [1, 4, 56, 8, 08, 23];
+
+for (const item of arr) {
+	console.log(item);
+}
+```
+
+Here's an example of how to make a custom object iterable by implementing the Iterable protocol:
+
+```js
+const myIterableObject = {
+	data: [1, 2, 3, 4],
+	[Symbol.iterator]() {
+		let index = 0;
+		return {
+			next: () => {
+				if (index < this.data.length) {
+					return { value: this.data[index++], done: false };
+				} else {
+					return { done: true };
+				}
+			},
+		};
+	},
+};
+
+for (const item of myIterableObject) {
+	console.log(item);
+}
+```
+
+### Generators
+
+its a special class function that simplify the task for writing iterators.
+
+A generator function is a special type of function that allows you to pause its execution and later resume it. It's defined using an asterisk (\*) after the function keyword, like this:
+
+```js
+function* myGeneratorFunction() {
+	// Generator function code here
+}
+```
+
+Generator functions are used to create generator objects, which can be iterated over to produce a sequence of values. The key feature of generator functions is the yield keyword, which is used to pause the function's execution and yield a value to the caller. Here's an example of a generator function:
+
+```js
+function* countToThree() {
+	yield 1;
+	yield 2;
+	yield 3;
+}
+
+const generator = countToThree();
+
+console.log(generator.next().value); // 1
+console.log(generator.next().value); // 2
+console.log(generator.next().value); // 3
+```
+
+In this example, countToThree is a generator function that yields the numbers 1, 2, and 3. When you call generator.next(), it returns an object with a value property representing the yielded value.
+
+Generator functions are useful for dealing with asynchronous code, iterating over large data sets, and creating iterators with a more readable and efficient syntax.
