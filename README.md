@@ -80,3 +80,92 @@ const arg4 = curry((a, b, c, d) => Math.pow(a, b * (c + d)));
 2. Explicit binding
 3. Implicit binding
 4. Default binding
+
+### Prototype
+
+there is a property of every function which is called prototype that points to an object.
+we can use that to add property to function definition
+
+**Use of Prototype**
+
+- to share properties and methods across instances
+- Inheritance
+
+#### Prototypal Inheritance
+
+prototypal inheritance is used to inherit properties and methods and prototype object from existing functions
+
+It lowers memory usage as we are reusing the methods and properties of an existing contructor function.
+
+```js
+const o = {
+	a: 1,
+	b: 2,
+	// __proto__ sets the [[Prototype]]. It's specified here
+	// as another object literal.
+	__proto__: {
+		b: 3,
+		c: 4,
+	},
+};
+
+// o.[[Prototype]] has properties b and c.
+// o.[[Prototype]].[[Prototype]] is Object.prototype (we will explain
+// what that means later).
+// Finally, o.[[Prototype]].[[Prototype]].[[Prototype]] is null.
+// This is the end of the prototype chain, as null,
+// by definition, has no [[Prototype]].
+// Thus, the full prototype chain looks like:
+// { a: 1, b: 2 } ---> { b: 3, c: 4 } ---> Object.prototype ---> null
+
+console.log(o.a); // 1
+// Is there an 'a' own property on o? Yes, and its value is 1.
+
+console.log(o.b); // 2
+// Is there a 'b' own property on o? Yes, and its value is 2.
+// The prototype also has a 'b' property, but it's not visited.
+// This is called Property Shadowing
+
+console.log(o.c); // 4
+// Is there a 'c' own property on o? No, check its prototype.
+// Is there a 'c' own property on o.[[Prototype]]? Yes, its value is 4.
+
+console.log(o.d); // undefined
+// Is there a 'd' own property on o? No, check its prototype.
+// Is there a 'd' own property on o.[[Prototype]]? No, check its prototype.
+// o.[[Prototype]].[[Prototype]] is Object.prototype and
+// there is no 'd' property by default, check its prototype.
+// o.[[Prototype]].[[Prototype]].[[Prototype]] is null, stop searching,
+// no property found, return undefined.
+```
+
+In below example all boxes' getValue method will refer to the same function, lowering memory usage. However, manually binding the **proto** for every object creation is still very inconvenient. This is when we would use a constructor function, which automatically sets the [[Prototype]] for every object manufactured. Constructors are functions called with new.
+
+```js
+const boxPrototype = {
+	getValue() {
+		return this.value;
+	},
+};
+
+const boxes = [
+	{ value: 1, __proto__: boxPrototype },
+	{ value: 2, __proto__: boxPrototype },
+	{ value: 3, __proto__: boxPrototype },
+];
+```
+
+```js
+// A constructor function
+function Box(value) {
+	this.value = value;
+}
+
+// Properties all boxes created from the Box() constructor
+// will have
+Box.prototype.getValue = function () {
+	return this.value;
+};
+
+const boxes = [new Box(1), new Box(2), new Box(3)];
+```
