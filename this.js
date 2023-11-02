@@ -42,3 +42,12 @@ function personnew(name) {
 const p1 = new personnew('superman')
 const p2 = new personnew('batman')
 console.log({ p1, p2 });
+
+
+globalThis.name = 'spider man'
+
+function sayMyNamedefault() {
+    console.log(`my name is ${this.name}`);
+}
+
+sayMyNamedefault()

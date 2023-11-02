@@ -67,9 +67,16 @@ const arg4 = curry((a, b, c, d) => Math.pow(a, b * (c + d)));
 - It makes the function resusable by letting you decie the Object value.
 - this value is determined entirely by how a functionis called.
 
-#### How ro determine 'this' ?
+#### How to determine 'this' ?
 
 - implicit biniding - rule says when a function is invoked with dot notation then the object on the left of the function is treated as 'this' instance
 - explicit binding - rule says when a functin is invoked explicitly with buit in call method then the 1st arg passed to the call method act as 'the' this instance
 - new binding - when we use 'new' keyword for creating constructor then js create a empty object which is refered as this.
 - default binding - if above 3 rules are not satisfied then js bind 'this' to the global object.
+
+##### Order of precedence
+
+1. New binding
+2. Explicit binding
+3. Implicit binding
+4. Default binding
