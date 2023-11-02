@@ -1,2 +1,0 @@
-# jsConcepts
- Javascript concepts
