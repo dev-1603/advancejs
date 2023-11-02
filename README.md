@@ -23,3 +23,7 @@ function outer() {
 ```
 
 ### closure
+
+When we return a function inside another function, we are returning a combination of function definition along with function scope. This would let the function to have an associated persistent memory which would hold to live data between execution.
+
+<script src="./closure.js" ></script>
