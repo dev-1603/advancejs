@@ -317,3 +317,7 @@ console.log(generator.next().value); // 3
 In this example, countToThree is a generator function that yields the numbers 1, 2, and 3. When you call generator.next(), it returns an object with a value property representing the yielded value.
 
 Generator functions are useful for dealing with asynchronous code, iterating over large data sets, and creating iterators with a more readable and efficient syntax.
+
+## Asynchronous javascript
+
+in basic form js is synchronous , blocking and single threaded
