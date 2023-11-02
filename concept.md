@@ -1,4 +1,8 @@
-## Scope
+# JavaScript Concepts
+
+## Advance concepts
+
+### Scope
 
 - Block Scope : varible declared inside a curly braces
 - Function scope: varibles declared inside a function which cannot be access outside the function .
@@ -17,3 +21,5 @@ function outer() {
 	inner();
 }
 ```
+
+### closure
