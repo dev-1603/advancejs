@@ -70,7 +70,7 @@ const arg4 = curry((a, b, c, d) => Math.pow(a, b * (c + d)));
 #### How to determine 'this' ?
 
 - implicit biniding - rule says when a function is invoked with dot notation then the object on the left of the function is treated as 'this' instance
-- explicit binding - rule says when a functin is invoked explicitly with buit in call method then the 1st arg passed to the call method act as 'the' this instance
+- explicit binding - rule says when a functin is invoked explicitly with built in call method then the 1st arg passed to the call method act as 'this'  instance
 - new binding - when we use 'new' keyword for creating constructor then js create a empty object which is refered as this.
 - default binding - if above 3 rules are not satisfied then js bind 'this' to the global object.
 
@@ -83,12 +83,12 @@ const arg4 = curry((a, b, c, d) => Math.pow(a, b * (c + d)));
 
 ### Prototype
 
-there is a property of every function which is called prototype that points to an object.
+There is a property of every function which is called prototype that points to an object.
 we can use that to add property to function definition
 
 **Use of Prototype**
 
-- to share properties and methods across instances
+- To share properties and methods across instances
 - Inheritance
 
 #### Prototypal Inheritance
