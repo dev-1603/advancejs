@@ -17,7 +17,7 @@ const person = {
 person.sayMyName()
 
 // Explicit Binding
-//  rule says when a functin is invoked explicitly with buit in call method then the 1st arg passed to the call method act as 'the' this instance
+//  rule says when a function is invoked explicitly with built in call method then the 1st arg passed to the call method act as 'this'  instance
 
 const person2 = {
     name: 'dev',
